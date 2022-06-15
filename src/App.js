@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Router>
         <Nav title="WT Diamonds"/>
-        <div className="container">
+        <div>
           <Routes>
             <Route exact path="/" element={<DiamondLists />}></Route>
             <Route
