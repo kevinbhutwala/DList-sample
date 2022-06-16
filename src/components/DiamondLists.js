@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import logo from "../assets/diamond.gif";
 import LoadingSpinner from "./LoadingSpinner";
 
 const DiamondLists = () => {
@@ -19,101 +20,111 @@ const DiamondLists = () => {
   const [Dto, setDTo] = useState("76.9");
 
   const [shapeId, setShapeId] = useState([]);
-  const [shapes, setShapes] = useState([
+  const shapes = [
     {
       id: 1,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Round.png",
+      ShapeName: "Round",
     },
     {
       id: 9,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Asscher.png",
+      ShapeName: "Asscher",
     },
     {
       id: 5,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Oval.png",
+      ShapeName: "Oval",
     },
     {
       id: 3,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Heart.png",
+      ShapeName: "Heart",
     },
     {
       id: 6,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Cushion.png",
+      ShapeName: "Cushion",
     },
     {
       id: 7,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Emerald.png",
+      ShapeName: "Emerald",
     },
     {
       id: 8,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Marquise.png",
+      ShapeName: "Marquise",
     },
     {
       id: 2,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Pear.png",
+      ShapeName: "Pear",
     },
     {
       id: 10,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Radiant.png",
+      ShapeName: "Radiant",
     },
     {
       id: 4,
       img: "https://laravel.weingenious.in/bellamy/public/assets/customer/images/diamond-shape/Princess.png",
+      ShapeName: "Princess",
     },
-  ]);
+  ];
 
   const [ClarityId, setClarityId] = useState([]);
 
-  const [Clarity, setClarity] = useState([
+  const Clarity=[
     {
       id: 11,
-      title: "FL",
+      ClarityName : "FL",
     },
     {
       id: 12,
-      title: "IF",
+      ClarityName : "IF",
     },
     {
       id: 9,
-      title: "VVS1",
+      ClarityName : "VVS1",
     },
     {
       id: 10,
-      title: "VVS2",
+      ClarityName : "VVS2",
     },
     {
       id: 8,
-      title: "VS1",
+      ClarityName : "VS1",
     },
     {
       id: 7,
-      title: "VS2",
+      ClarityName : "VS2",
     },
     {
       id: 1,
-      title: "S11",
+      ClarityName : "S11",
     },
     {
       id: 2,
-      title: "S12",
+      ClarityName : "S12",
     },
     {
       id: 3,
-      title: "S13",
+      ClarityName : "S13",
     },
     {
       id: 4,
-      title: "I1",
+      ClarityName : "I1",
     },
     {
       id: 5,
-      title: "I2",
+      ClarityName : "I2",
     },
     {
       id: 6,
-      title: "I3",
+      ClarityName : "I3",
     },
-  ]);
+  ];
 
   const [ColorId, setColorId] = useState([]);
   const [Color, setColor] = useState([
@@ -263,16 +274,18 @@ const DiamondLists = () => {
     },
   ]);
 
-  const [DiaTypeId, setDiaTypeId] = useState("");
+  const [selectedDiaType, setSelectedDiaType] = useState("");
 
   const [DiaType, setDiaType] = useState([
     {
       id: 66,
       title: "Natural",
+      name: "Natural",
     },
     {
       id: 67,
       title: "Lab",
+      name: "Lab Down",
     },
   ]);
 
@@ -280,22 +293,25 @@ const DiamondLists = () => {
     setIsLoading(true);
     axios
       .post(
-        `https://laravel.weingenious.in/bellamy/api/diamonds?1=1&page=1&sort=1&j=0&min=${Pfrom}&max=${Pto}&CaratMin=${Cfrom}&CaratMax=${Cto}
-        &TableMin=${Tfrom}&TableMax=${Tto}&DepthMin=${Dfrom}&DepthMax=${Dto}
-        ${shapeId?.length > 0 ? `&Shape=${shapeId}` : []}
-        ${ClarityId?.length > 0 ? `&Clarity=${ClarityId}` : []}
-        ${ColorId?.length > 0 ? `&Color=${ColorId}` : []}
-        ${CutId?.length > 0 ? `&Cut=${CutId}` : []}
-        ${SymId?.length > 0 ? `&Sym=${SymId}` : []}
-        ${LabId?.length > 0 ? `&Lab=${LabId}` : []}
-        ${PolishId.length > 0 ? `&Polish=${PolishId}` : []}
-        ${FluorescenceId.length > 0 ? `&Flour=${FluorescenceId}` : []}
-        ${DiaTypeId != "" ? `&DiaType=${DiaTypeId}` : ""}`
+        `https://laravel.weingenious.in/bellamy/api/diamonds?1=1&page=1&sort=1&j=0`
+        // `https://laravel.weingenious.in/nwdlwt/api/diamonds?1=1&page=1&sort=1&j=0
+        // &min=${Pfrom}&max=${Pto}&CaratMin=${Cfrom}&CaratMax=${Cto}
+        // &TableMin=${Tfrom}&TableMax=${Tto}&DepthMin=${Dfrom}&DepthMax=${Dto}
+        // ${shapeId?.length > 0 ? `&Shape=${shapeId}` : []}
+        // ${ClarityId?.length > 0 ? `&Clarity=${ClarityId}` : []}
+        // ${ColorId?.length > 0 ? `&Color=${ColorId}` : []}
+        // ${CutId?.length > 0 ? `&Cut=${CutId}` : []}
+        // ${SymId?.length > 0 ? `&Sym=${SymId}` : []}
+        // ${LabId?.length > 0 ? `&Lab=${LabId}` : []}
+        // ${PolishId.length > 0 ? `&Polish=${PolishId}` : []}
+        // ${FluorescenceId.length > 0 ? `&Flour=${FluorescenceId}` : []}
+        // ${selectedDiaType != "" ? `&DiaType=${selectedDiaType}` : ""}`
       )
       .then((json) => {
         console.log("jason", json.config.url);
         console.log("jason", json.data.data);
         setItems(json.data.data);
+        setListFilter(json.data.data);
         setIsLoading(false);
       });
   }, [
@@ -307,7 +323,7 @@ const DiamondLists = () => {
     LabId,
     PolishId,
     FluorescenceId,
-    DiaTypeId,
+    selectedDiaType,
     Pfrom,
     Pto,
     Cfrom,
@@ -354,7 +370,11 @@ const DiamondLists = () => {
 
   const [selectedShape, setSelectedShape] = useState([]);
 
+  const [listFilter, setListFilter] = useState([]);
+
   const handleShape = (item) => {
+    let dataCopy = [];
+
     let array = [...selectedShape];
     let selectedIndex = array.findIndex((d) => d.id == item.id);
     if (array?.length > 0 && selectedIndex >= 0) {
@@ -362,16 +382,28 @@ const DiamondLists = () => {
     } else {
       array.push(item);
     }
-    let ShapeId = array.map((item) => {
-      return item.id;
-    });
-    setShapeId(ShapeId);
     setSelectedShape(array);
+
+    if (array.length > 0) {
+      array.map((iteme) => {
+        listFilter.map((itemd) => {
+          if (iteme?.ShapeName == itemd?.ShapeName) {
+            dataCopy = [...dataCopy, itemd];
+          }
+        });
+      });
+
+      setItems([...dataCopy]);
+    } else {
+      setItems([...listFilter]);
+    }
   };
 
   const [selectedClarity, setSelectedClarity] = useState([]);
 
   const handleClarity = (item) => {
+    let dataCopy = [];
+
     let array = [...selectedClarity];
     let selectedIndex = array.findIndex((d) => d.id == item.id);
     if (array?.length > 0 && selectedIndex >= 0) {
@@ -379,11 +411,37 @@ const DiamondLists = () => {
     } else {
       array.push(item);
     }
-    let ClarityId = array.map((item) => {
-      return item.id;
-    });
-    setClarityId(ClarityId);
     setSelectedClarity(array);
+
+    if (array.length > 0) {
+      array.map((iteme) => {
+        console.log("iteme?.ClarityName",iteme?.ClarityName);
+        items.map((itemd) => {
+          console.log("iitemd",itemd?.ClarityName);
+
+          if (iteme?.ClarityName == itemd?.ClarityName) {
+            dataCopy = [...dataCopy, itemd];
+          }
+        });
+      });
+
+      setItems([...dataCopy]);
+    } else {
+      setItems([...listFilter]);
+    }
+
+    // let array = [...selectedClarity];
+    // let selectedIndex = array.findIndex((d) => d.id == item.id);
+    // if (array?.length > 0 && selectedIndex >= 0) {
+    //   array.splice(selectedIndex, 1);
+    // } else {
+    //   array.push(item);
+    // }
+    // let ClarityId = array.map((item) => {
+    //   return item.id;
+    // });
+    // setClarityId(ClarityId);
+    // setSelectedClarity(array);
   };
 
   const [selectedColor, setSelectedColor] = useState([]);
@@ -456,24 +514,6 @@ const DiamondLists = () => {
     setSelectedLab(array);
   };
 
-  const [selectedDiaType, setSelectedDiaType] = useState([]);
-
-  const handleDiaType = (item) => {
-    let array = [...selectedDiaType];
-    let selectedIndex = array.findIndex((d) => d.title == item.title);
-    if (array?.length > 0 && selectedIndex >= 0) {
-      array.splice(selectedIndex, 1);
-    } else {
-      array.push(item);
-    }
-    console.log("DiaTypeId", array);
-
-    let DiaTypeId = array.map((item) => {
-      return item.title;
-    });
-    setDiaTypeId(DiaTypeId);
-    setSelectedDiaType(array);
-  };
   return (
     <div className="App">
       <div className="container mt-3">
@@ -484,7 +524,7 @@ const DiamondLists = () => {
               <br />
               <div className="mt-1">
                 {shapes.map((item) => {
-                  let selected = selectedShape.some((tag) => {
+                  let selected = selectedShape?.some((tag) => {
                     return tag.id === item.id;
                   });
                   return (
@@ -522,7 +562,7 @@ const DiamondLists = () => {
                       }}
                       onClick={() => handleClarity(item)}
                     >
-                      {item.title}
+                      {item.ClarityName}
                     </button>
                   );
                 })}
@@ -822,18 +862,18 @@ const DiamondLists = () => {
           </div>
           <div className="col-4">
             <div className="p-3 ">
-              Diamond Type
-              <br />
+              {" "}
+              Diamond Type <br />
               {DiaType.map((item) => {
-                let selected = selectedDiaType.some((tag) => {
-                  return tag.title === item.title;
-                });
                 return (
                   <button
-                    style={{ backgroundColor: selected ? "#3ab591" : "white" }}
-                    onClick={() => handleDiaType(item)}
+                    style={{
+                      backgroundColor:
+                        item.title == selectedDiaType ? "#3ab591" : "white",
+                    }}
+                    onClick={() => setSelectedDiaType(item.title)}
                   >
-                    {item.title}
+                    {item.name}
                   </button>
                 );
               })}
@@ -844,8 +884,16 @@ const DiamondLists = () => {
 
       {isLoading ? (
         <LoadingSpinner />
+      ) : items.length == 0 ? (
+        <div style={{ display: "grid", justifyContent: "center", padding: 20 }}>
+          <img
+            src={logo}
+            alt="loading..."
+            style={{ width: 150, height: 150 }}
+          />
+          <h4>OOPS !!, Nothing in List</h4>
+        </div>
       ) : (
-        items.length > 0 ? 
         <table className="table">
           <thead>
             <tr>
@@ -858,26 +906,22 @@ const DiamondLists = () => {
               <th scope="col">PRICE</th>
             </tr>
           </thead>
-
-            <tbody>
-              {items.map((item) => {
-                return (
-                  <tr>
-                    <td>{item.ShapeName}</td>
-                    <td>{item.carat}</td>
-                    <td>{item.ColorName}</td>
-                    <td>{item.ClarityName}</td>
-                    <td>{item.CutName}</td>
-                    <td>{item.LabName}</td>
-                    <td>{item.amount}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-         
+          <tbody>
+            {items.map((item) => {
+              return (
+                <tr>
+                  <td>{item.ShapeName}</td>
+                  <td>{item.carat}</td>
+                  <td>{item.ColorName}</td>
+                  <td>{item.ClarityName}</td>
+                  <td>{item.CutName}</td>
+                  <td>{item.LabName}</td>
+                  <td>{item.amount}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
-        : (
-<h2 className="text-center">No Data Found.</h2>        ) 
       )}
     </div>
   );

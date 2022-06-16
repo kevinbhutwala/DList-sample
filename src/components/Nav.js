@@ -33,6 +33,12 @@ export default function Nav(props) {
               ProductList
               </Link>
             </li>
+            <li className="nav-item ">
+              <Link className="nav-link" to="/ProductDetail">
+              ProductDetail
+              </Link>
+            </li>
+
           </ul>
           
           

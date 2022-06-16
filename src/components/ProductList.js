@@ -8,9 +8,13 @@ export default function ProductList() {
     const [data, setData] = useState([])
     const [filter, setFilter] = useState([])
     const [selected, setSelected] = useState([]);
+
     const [selectedDiamonds, setSelectedDiamonds] = useState([]);
+
     const [selectedSetting, setSelectedSetting] = useState([]);
+
     const [selectedCategory, setSelectedCategory] = useState([]);
+
     const options = [
         { label: "White Gold", value: "White Gold" },
         { label: "Rose Gold", value: "Rose Gold" },
@@ -69,11 +73,14 @@ export default function ProductList() {
     }, [])
 
     const funSelect = (e) => {
+        console.log("itemd",e.length);
+
         setSelected(e)
         let dataCopy = []
         if (e.length > 0) {
             e.map((iteme) => {
                 filter.map((itemd) => {
+                    console.log("itemd",itemd.length);
                     if (iteme.value == itemd?.metal_type?.paraname) {
                         dataCopy = [...dataCopy, itemd]
                     }
@@ -87,6 +94,7 @@ export default function ProductList() {
     }
 
     const funSelectDiamonds = (e) => {
+        console.log("e",e);
         setSelectedDiamonds(e)
         let dataCopy = []
         if (e.length > 0) {
